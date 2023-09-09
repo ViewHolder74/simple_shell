@@ -40,9 +40,24 @@ int main(int argc, char **argv)
 		}
 		else if (pid == 0)
 		{
-			char *arg_passed[] = {lineptr, NULL};
-			execve(lineptr, arg_passed, NULL);
-			perror("Error:");
+
+			char *args[MAX_COMMAND_LENGTH];
+			int i = 0;
+			char *delim = " ";
+			
+		char *token = strtok(lineptr, delim);
+		while(token != NULL)
+		{
+			argv[i] = token;
+			i++;
+			token = strtok(NULL, delim);
+		}
+		
+		args[i] = NULL;
+
+		execve(args[0], args, NULL);
+
+		perror("Error:");
 			exit(1);
 		}
 		else
