@@ -56,7 +56,7 @@ int lineptr_exec(char *lineptr, char **args, char **envp)
  * main - defines a unix interprater
  * @argc: argment count
  * @argv: argument vector
- *
+ * @envp: environment variable
  * Return: 0
  */
 
