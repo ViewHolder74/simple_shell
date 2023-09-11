@@ -18,10 +18,9 @@ int lineptr_exec(char *lineptr, char **args, char **envp)
 	char *token, **dir, *delim = ":";
 	char full_path[MAX_COMMAND_LENGTH];
 
-	if [strcmp(lineptr, "exit") == 0]
-		exit(0)
-
-	if (strcmp(lineptr, "env") == 0)
+	if (strcmp(lineptr, "exit") == 0)
+		exit(0);
+	else if (strcmp(lineptr, "env") == 0)
 	{
 		dir = envp;
 		while (*dir != NULL)
