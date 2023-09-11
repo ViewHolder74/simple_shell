@@ -9,4 +9,6 @@
 #include <errno.h>
 #define MAX_COMMAND_LENGTH 1024
 
-#endif 
+char *_strcpy(char *dest, char *src)
+
+#endif
