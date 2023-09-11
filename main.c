@@ -31,26 +31,27 @@ int lineptr_exec(char *lineptr, char **args, char **envp)
 		return (0);
 	}
 	if (pathCpy == NULL)
-	{
-		perror("Failed to allocate memory");
 		return (-1);
-	}
-	token = strtok(pathCpy, delim);
-	while (token != NULL)
+	if (strchr(lineptr, '/') != NULL)
+		execve(lineptr, args, envp);
+	else
 	{
-		_strcpy(full_path, token);
-		strcat(full_path, "/");
-		strcat(full_path, lineptr);
-		execve(full_path, args, envp);
-		if (errno != ENOENT)
+		token = strtok(pathCpy, delim);
+		while (token != NULL)
 		{
-			perror("Error");
-			free(pathCpy);
-			return (-1);
+			_strcpy(full_path, token);
+			strcat(full_path, "/");
+			strcat(full_path, lineptr);
+			execve(full_path, args, envp);
+			if (errno != ENOENT)
+			{
+				free(pathCpy);
+				return (-1);
+			}
+			token = strtok(NULL, delim);
 		}
-		token = strtok(NULL, delim);
-	}
 	free(pathCpy);
+	}
 	return (-1);
 }
 
@@ -70,7 +71,8 @@ int main(int argc, char **argv, char **envp)
 	size_t n = 0;
 	ssize_t num_char;
 	int result, count;
-	(void)argc; (void)argv;
+	(void)argc;
+	(void)argv;
 
 	while (1)
 	{
