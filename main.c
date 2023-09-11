@@ -70,6 +70,7 @@ int main(int argc, char **argv, char **envp)
 	size_t n = 0;
 	ssize_t num_char;
 	int result, count;
+	(void)argc; (void)argv;
 
 	while (1)
 	{
