@@ -65,14 +65,13 @@ int lineptr_exec(char *lineptr, char **args, char **envp)
 
 int main(int argc, char **argv, char **envp)
 {
-	char *buffer = "$ ", *token;
+	char *buffer = ":) ", *token;
 	char *lineptr = NULL, *delim = " ";
 	char *args[MAX_COMMAND_LENGTH];
 	size_t n = 0;
 	ssize_t num_char;
 	int result, count;
 	(void)argc;
-	(void)argv;
 
 	while (1)
 	{
@@ -87,7 +86,7 @@ int main(int argc, char **argv, char **envp)
 		if (num_char > 0 && lineptr[num_char - 1] == '\n')
 			lineptr[num_char - 1] = '\0';
 		token = strtok(lineptr, delim);
-	       	for (count = 0; token != NULL; ++count)
+		for (count = 0; token != NULL; ++count)
 		{
 			args[count] = token;
 			token = strtok(NULL, delim);
@@ -95,7 +94,7 @@ int main(int argc, char **argv, char **envp)
 		args[count] = NULL;
 		result = lineptr_exec(args[0], args, envp);
 		if (result == -1)
-			perror("Error");
+			perror(argv[0]);
 	}
 	free(lineptr);
 	return (0);
