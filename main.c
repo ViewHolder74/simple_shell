@@ -87,7 +87,7 @@ int main(int argc, char **argv, char **envp)
 		if (num_char > 0 && lineptr[num_char - 1] == '\n')
 			lineptr[num_char - 1] = '\0';
 		token = strtok(lineptr, delim);
-		for (count = 0; token != NULL; count++)
+	       	for (count = 0; token != NULL; ++count)
 		{
 			args[count] = token;
 			token = strtok(NULL, delim);
