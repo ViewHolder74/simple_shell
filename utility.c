@@ -26,3 +26,28 @@ char *_strcpy(char *dest, char *src)
 
 	return (dest);
 }
+
+
+/**
+ * strdup - a function that duplicates string
+ * *mainstring - main string to be inputed
+ * @noftimes - number of times to duplicate string
+ *
+ * Return: 0 on success else -1 on failure
+ */
+void strdup(const char *mainstring, int noftimes)
+{
+	int i, noftimes
+	char *mainstring;
+
+	if (mainstring == NULL)
+	{
+		return (NULL);
+	}
+
+	for (int i = 0; i < noftimes; i++)
+	{
+		printf("%s\n", mainstring);
+	}
+
+}
