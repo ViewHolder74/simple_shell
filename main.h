@@ -15,7 +15,7 @@
  */
 char *_strcpy(char *dest, char *src);
 int lineptr_exec(char *lineptr, char **args, char **envp);
-int _strcmp(char *s1, char *s2)
-char *_strdup(char *str)
+int _strcmp(char *s1, char *s2);
+char *_strdup(char *str);
 
 #endif
