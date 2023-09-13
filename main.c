@@ -39,7 +39,7 @@ int lineptr_exec(char *lineptr, char **args, char **envp)
 		token = strtok(pathCpy, delim);
 		while (token != NULL)
 		{
-			strcpy(full_path, token);
+			_strcpy(full_path, token);
 			strcat(full_path, "/");
 			strcat(full_path, lineptr);
 			execve(full_path, args, envp);

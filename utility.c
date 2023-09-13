@@ -9,7 +9,7 @@
  *
  * Return: the pointer to destination -dest
  */
-char *strcpy(char *dest, char *src)
+char *_strcpy(char *dest, char *src)
 {
 	int len = 0, i;
 
@@ -35,7 +35,8 @@ char *strcpy(char *dest, char *src)
  *
  * Return: 0 on success else -1 on failure
  */
-void strdup(const char *mainstring, int noftimes)
+
+/*void strdup(const char *mainstring, int noftimes)
 {
 	int i, noftimes;
 	char *mainstring;
@@ -50,4 +51,4 @@ void strdup(const char *mainstring, int noftimes)
 		printf("%s\n", mainstring);
 	}
 
-}
+}*/
