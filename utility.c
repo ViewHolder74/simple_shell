@@ -81,3 +81,30 @@ int _strcmp(char *s1, char *s2)
 	}
 	return (*s1 - *s2);
 }
+
+/**
+ * *_strcat - function commute srtings
+ * @full_path: param pointer to a char
+ * @token: param pointer to a char
+ * Return: return value of dest
+ */
+
+char *_strcat(char *full_path, char *token)
+{
+	int i = 0, j = 0;
+
+	while (full_path[i] != '\0')
+	{
+		i++;
+	}
+
+	while (token[j] != '\0')
+	{
+		full_path[i] = token[j];
+		j++;
+		i++;
+	}
+
+	full_path[i] = '\0';
+	return (full_path);
+}

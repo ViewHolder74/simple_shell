@@ -14,7 +14,7 @@
 int lineptr_exec(char *lineptr, char **args, char **envp)
 {
 	char *path = getenv("PATH");
-	char *pathCpy = strdup(path);
+	char *pathCpy = _strdup(path);
 	char *token, **dir, *delim = ":";
 	char full_path[MAX_COMMAND_LENGTH];
 
@@ -40,8 +40,8 @@ int lineptr_exec(char *lineptr, char **args, char **envp)
 		while (token != NULL)
 		{
 			_strcpy(full_path, token);
-			strcat(full_path, "/");
-			strcat(full_path, lineptr);
+			_strcat(full_path, "/");
+			_strcat(full_path, lineptr);
 			execve(full_path, args, envp);
 			if (errno != ENOENT)
 			{
