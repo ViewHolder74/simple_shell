@@ -32,7 +32,7 @@ int lineptr_exec(char *lineptr, char **args, char **envp)
 	}
 	if (pathCpy == NULL)
 		return (-1);
-	if (strchr(lineptr, '/') != NULL)
+	if (_strchr(lineptr, '/') != NULL)
 		execve(lineptr, args, envp);
 	else
 	{
