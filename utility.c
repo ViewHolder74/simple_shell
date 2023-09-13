@@ -37,7 +37,7 @@ char *_strcpy(char *dest, char *src)
  */
 void strdup(const char *mainstring, int noftimes)
 {
-	int i, noftimes
+	int i, noftimes;
 	char *mainstring;
 
 	if (mainstring == NULL)
