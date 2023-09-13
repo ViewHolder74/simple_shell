@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "main.h"
 #include <errno.h>
+#include <fcntl.h>
 #define MAX_COMMAND_LENGTH 1024
 
 /**
@@ -56,6 +57,31 @@ int lineptr_exec(char *lineptr, char **args, char **envp)
 }
 
 /**
+ * handle_cmd - function that execute a single command
+ * @lineptr: command string
+ * @argv: argument vector
+ * @envp: environment variable
+ * Return: void
+ */
+void handle_cmd( char *lineptr, char **argv, char **envp)
+{
+	char *token, *delim = " ";
+	char *args[MAX_COMMAND_LENGTH];
+	int count = 0, nstr;
+
+	token = strtok(lineptr, delim);
+	while(token != NULL)
+	{
+		args[count++] = token;
+		token = strtok(NULL, delim);
+	}
+	args[count] = NULL;
+	nstr = lineptr_exec(args[0], args, envp);
+	if (nstr == -1)
+		perror(argv[0]);
+}
+
+/**
  * main - defines a unix interprater
  * @argc: argment count
  * @argv: argument vector
@@ -70,12 +96,21 @@ int main(int argc, char **argv, char **envp)
 	char *args[MAX_COMMAND_LENGTH];
 	size_t n = 0;
 	ssize_t num_char;
-	int result, count;
-	(void)argc;
+	int fd = STDIN_FILENO;
 
+	if (argc > 1)
+	{
+		fd = open(argv[1], O_RDONLY);
+		if (fd == -1)
+		{
+			perror("File can't be openned");
+			return (1);
+		}
+	}
 	while (1)
 	{
-		printf("%s", buffer);
+		if (isatty(STDIN_FILENO))
+			printf("%s", buffer);
 		fflush(stdout);
 		num_char = getline(&lineptr, &n, stdin);
 		if (num_char == -1)
@@ -85,17 +120,10 @@ int main(int argc, char **argv, char **envp)
 		}
 		if (num_char > 0 && lineptr[num_char - 1] == '\n')
 			lineptr[num_char - 1] = '\0';
-		token = strtok(lineptr, delim);
-		for (count = 0; token != NULL; ++count)
-		{
-			args[count] = token;
-			token = strtok(NULL, delim);
-		}
-		args[count] = NULL;
-		result = lineptr_exec(args[0], args, envp);
-		if (result == -1)
-			perror(argv[0]);
+		handle_cmd(lineptr, argv, envp);
 	}
 	free(lineptr);
+	if (argc > 1)
+		close(fd);
 	return (0);
 }
