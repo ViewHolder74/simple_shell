@@ -29,26 +29,32 @@ char *_strcpy(char *dest, char *src)
 
 
 /**
- * strdup - a function that duplicates string
- * *mainstring - main string to be inputed
- * @noftimes - number of times to duplicate string
+ * _strdup - a function that duplicates string
+ * @str: the string to be duplicated
  *
- * Return: 0 on success else -1 on failure
+ * Return: a pointer to the string copied on success, else NULL for error
  */
-
-/*void strdup(const char *mainstring, int noftimes)
+char *_strdup(char *str)
 {
-	int i, noftimes;
-	char *mainstring;
+	char *dupli;
+	unsigned int i, len;
 
-	if (mainstring == NULL)
-	{
+	i = 0;
+	len = 0;
+
+	if (str == NULL)
 		return (NULL);
-	}
 
-	for (int i = 0; i < noftimes; i++)
-	{
-		printf("%s\n", mainstring);
-	}
+	while (str[len])
+		len++;
 
-}*/
+	dup = malloc(sizeof(char) * (len + 1));
+
+	if (dupli == NULL)
+		return (NULL);
+
+	while ((dupli[i] = str[i]) != '\0')
+		i++;
+
+	return (dupli);
+}
