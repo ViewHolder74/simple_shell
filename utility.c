@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * *_strcpy - copies a string pointed to by source -src
+ * *strcpy - copies a string pointed to by source -src
  * which includes the terminating null byte (\0)
  * to the buffer pointed to by destination -dest
  * @dest: pointer to the buffer or destination in which we copy the string
@@ -9,7 +9,7 @@
  *
  * Return: the pointer to destination -dest
  */
-char *_strcpy(char *dest, char *src)
+char *strcpy(char *dest, char *src)
 {
 	int len = 0, i;
 
