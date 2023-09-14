@@ -91,9 +91,8 @@ void handle_cmd( char *lineptr, char **argv, char **envp)
 
 int main(int argc, char **argv, char **envp)
 {
-	char *buffer = ":) ", *token;
-	char *lineptr = NULL, *delim = " ";
-	char *args[MAX_COMMAND_LENGTH];
+	char *buffer = ":) ";
+	char *lineptr = NULL;
 	size_t n = 0;
 	ssize_t num_char;
 	int fd = STDIN_FILENO;
