@@ -26,7 +26,8 @@ int lineptr_exec(char *lineptr, char **args, char **envp)
 		dir = envp;
 		while (*dir != NULL)
 		{
-			printf("%s\n", *dir);
+			write(STDOUT_FILENO, *dir, strlen(*dir));
+			write(STDOUT_FILENO, "\n", 1);
 			dir++;
 		}
 		return (0);
@@ -109,7 +110,7 @@ int main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
-			printf("%s", buffer);
+			write(STDOUT_FILENO, buffer, strlen(buffer));
 		fflush(stdout);
 		num_char = getline(&lineptr, &n, stdin);
 		if (num_char == -1)
