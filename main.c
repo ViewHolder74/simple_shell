@@ -63,14 +63,14 @@ int lineptr_exec(char *lineptr, char **args, char **envp)
  * @envp: environment variable
  * Return: void
  */
-void handle_cmd( char *lineptr, char **argv, char **envp)
+void handle_cmd(char *lineptr, char **argv, char **envp)
 {
 	char *token, *delim = " ";
 	char *args[MAX_COMMAND_LENGTH];
 	int count = 0, nstr;
 
 	token = strtok(lineptr, delim);
-	while(token != NULL)
+	while (token != NULL)
 	{
 		args[count++] = token;
 		token = strtok(NULL, delim);
@@ -114,7 +114,7 @@ int main(int argc, char **argv, char **envp)
 		num_char = getline(&lineptr, &n, stdin);
 		if (num_char == -1)
 		{
-			printf("\n");
+			_putchar('\n');
 			break;
 		}
 		if (num_char > 0 && lineptr[num_char - 1] == '\n')
