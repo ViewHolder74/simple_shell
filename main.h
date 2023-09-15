@@ -9,16 +9,18 @@
 #include <errno.h>
 #define MAX_COMMAND_LENGTH 1024
 
-/**
- * _strdup - a function that duplicates string
- * _strcmp - a function that compares two strings
- */
+/* utility.c */
 char *_strcpy(char *dest, char *src);
-int lineptr_exec(char *lineptr, char **args, char **envp);
 int _strcmp(char *s1, char *s2);
 char *_strdup(char *str);
 char *_strcat(char *full_path, char *token);
 char *_strchr(char *s, char c);
+/* utility.c */
+
 int _putchar(char c);
+
+/* utility2.c */
+int _strlen(char *s);
+/* utility2.c */
 
 #endif

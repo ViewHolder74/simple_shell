@@ -26,7 +26,7 @@ int lineptr_exec(char *lineptr, char **args, char **envp)
 		dir = envp;
 		while (*dir != NULL)
 		{
-			write(STDOUT_FILENO, *dir, strlen(*dir));
+			write(STDOUT_FILENO, *dir, _strlen(*dir));
 			write(STDOUT_FILENO, "\n", 1);
 			dir++;
 		}
@@ -92,8 +92,7 @@ void handle_cmd(char *lineptr, char **argv, char **envp)
 
 int main(int argc, char **argv, char **envp)
 {
-	char *buffer = ":) ";
-	char *lineptr = NULL;
+	char *buffer = ":) ", *lineptr = NULL;
 	size_t n = 0;
 	ssize_t num_char;
 	int fd = STDIN_FILENO;
@@ -110,7 +109,7 @@ int main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
-			write(STDOUT_FILENO, buffer, strlen(buffer));
+			write(STDOUT_FILENO, buffer, _strlen(buffer));
 		fflush(stdout);
 		num_char = getline(&lineptr, &n, stdin);
 		if (num_char == -1)
