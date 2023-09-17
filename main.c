@@ -14,10 +14,8 @@
  */
 int lineptr_exec(char *lineptr, char **args, char **envp)
 {
-	char *path = getenv("PATH");
-	char *pathCpy = _strdup(path);
-	char *token, **dir, *delim = ":";
-	char full_path[MAX_COMMAND_LENGTH];
+	char *path = getenv("PATH"), *pathCpy = _strdup(path);
+	char *token, **dir, *delim = ":", full_path[MAX_COMMAND_LENGTH];
 
 	if (_strcmp(lineptr, "exit") == 0)
 		exit(0);
